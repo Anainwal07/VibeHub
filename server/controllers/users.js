@@ -1,7 +1,7 @@
-import User from "../models/User";
+import User from "../models/User.js";
 
 // READ
-export const getUsers = async (req, res) => {
+export const getUser = async (req, res) => {
     try {
         const { id } = req.params;
         const user = await User.findById(id);
@@ -48,7 +48,18 @@ export const addRemoveFriend = async( req, res) => {
           friend.friends.push(id);
         }
         await user.save();
+        await friend.save();
+
+        const friends = await Promise.all(
+            user.friends.map((id) => User.findById(id))
+        );
+        const formattedFriends = friends.map(
+            ({_id , firstNmae, LastName, occupation, location, picturePath}) => {
+                return {_id , firstNmae, LastName, occupation, location, picturePath}
+            }
+        );
+        res.status(200).json(formattedFriends);
     } catch (error) {
-        
+        res.status(404).json({message : err.message});
     }
 }
