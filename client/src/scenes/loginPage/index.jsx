@@ -13,7 +13,7 @@ const LoginPage = () => {
         textAlign="center"
       >
         <Typography fontWeight="bold" fontSize="32px" color="primary">
-          VibeHub
+        <span style={{color: 'white'}}>Vibe</span>Hub
         </Typography>
       </Box>
 

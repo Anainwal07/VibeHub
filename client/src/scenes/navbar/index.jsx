@@ -56,7 +56,7 @@ const Navbar = () => {
             },
           }}
         >
-          VibeHub
+           <span style={{color: 'white'}}>Vibe</span>Hub
         </Typography>
         {isNonMobileScreens && (
           <FlexBetween
